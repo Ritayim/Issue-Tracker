@@ -1,0 +1,16 @@
+{% if user.is_authenticated %}
+  Hi {{ user.username }}!
+  <p><a href="{% url 'logout' %}">Log Out</a></p>
+
+{% endif %}
+
+{% for task in tasks %}
+    <p>{{task}}</p>
+    
+
+    {% empty %}
+    <h3>No items in List</h3>
+
+{% endfor %}
+
+<a href="{% url 'task-create' %}">&#x2b;</a>
