@@ -28,7 +28,7 @@ class Task(models.Model):
 
     author = models.ForeignKey(User, on_delete=models.CASCADE, null=False, blank=False)
     project = models.ForeignKey("Project", on_delete=models.CASCADE, related_name="tasks", null=False, blank=False)
-    assignees = models.ManyToManyField(User, related_name="tasks", default=None)
+    assignees = models.ManyToManyField(User, related_name="tasks", blank=True)
     title = models.CharField(max_length=200)
     description = models.TextField(null=True, blank=True)
     priority = models.CharField(max_length=1, choices=PRIORITY_CHOICES)

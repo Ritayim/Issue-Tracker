@@ -1,0 +1,10 @@
+
+{% for task in task_list %}
+<p>{{task}} <a href="{% url 'task-update' %}">&#9997;</a> </p>
+
+
+{% empty %}
+<h3>No items in List</h3>
+
+{% endfor %}
+<a href="{% url 'task-create' %}?p={{request.GET.p}}">&#x2b;</a>

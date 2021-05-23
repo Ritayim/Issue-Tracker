@@ -4,13 +4,13 @@
 
 {% endif %}
 
-{% for task in tasks %}
-    <p>{{task}}</p>
-    
+<a href="{% url 'project-create' %}">&#x2b;</a> 
+
+{% for project in projects %}
+    <a href="{% url 'board' %}?p={{project.id}}">{{project.name}}</a>
 
     {% empty %}
     <h3>No items in List</h3>
+    
 
 {% endfor %}
-
-<a href="{% url 'task-create' %}">&#x2b;</a>
