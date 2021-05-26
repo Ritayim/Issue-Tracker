@@ -37,7 +37,8 @@ class ProjectTaskList(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['task_list'] = Task.objects.all()
+        p = Project.objects.get(id = self.request.GET.get('p', None))
+        context['task_list'] = Task.objects.filter(project = p)
         return context
 
 class TaskCreate(CreateView):
@@ -47,7 +48,7 @@ class TaskCreate(CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
-        project_id = self.request.GET.get('p')
+        project_id = self.request.GET.get('p', None)
         form.instance.project = Project.objects.get(id = project_id)
         return super(TaskCreate, self).form_valid(form)
 
